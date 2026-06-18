@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Creation — Loading</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050508;
+  --blue:#1d6cf0;
+  --blue2:#4d8fff;
+  --green:#00ff88;
+  --dim:#0a0f1e;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:'Share Tech Mono',monospace}
+
+/* ── CANVAS BACKGROUND ── */
+#bg-canvas{position:fixed;inset:0;z-index:0}
+
+/* ── SCANLINES ── */
+.scanlines{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,transparent 2px,
+    rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px
+  );
+}
+
+/* ── CORNER BRACKETS ── */
+.corner{position:fixed;z-index:3;width:40px;height:40px}
+.corner svg{width:40px;height:40px}
+.corner.tl{top:24px;left:24px}
+.corner.tr{top:24px;right:24px;transform:scaleX(-1)}
+.corner.bl{bottom:24px;left:24px;transform:scaleY(-1)}
+.corner.br{bottom:24px;right:24px;transform:scale(-1)}
+
+/* ── TOP BAR ── */
+.top-bar{
+  position:fixed;top:0;left:0;right:0;z-index:4;
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--blue),var(--blue2),transparent);
+  animation:topglow 2s ease-in-out infinite alternate;
+}
+@keyframes topglow{from{opacity:.5}to{opacity:1}}
+
+/* ── MAIN LOADER ── */
+#loader{
+  position:fixed;inset:0;z-index:5;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:0;
+}
+
+/* LOGO */
+.loader-logo{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:44px;
+  animation:fadeSlideUp .6s .1s both;
+}
+.logo-hex{
+  width:52px;height:52px;background:var(--blue);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 30px rgba(29,108,240,.6);
+  animation:hexPulse 1.8s ease-in-out infinite;
+}
+@keyframes hexPulse{0%,100%{box-shadow:0 0 20px rgba(29,108,240,.5)}50%{box-shadow:0 0 50px rgba(29,108,240,.9),0 0 80px rgba(29,108,240,.3)}}
+.logo-hex svg{width:26px;height:26px;fill:white}
+.logo-wordmark{
+  display:flex;flex-direction:column;gap:0;
+}
+.logo-main{
+  font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:900;
+  color:#fff;letter-spacing:1px;line-height:1;
+}
+.logo-main em{color:var(--blue);font-style:normal}
+.logo-sub-text{
+  font-size:.62rem;color:rgba(29,108,240,.7);letter-spacing:4px;
+  text-transform:uppercase;margin-top:2px;
+}
+
+/* BOOT TERMINAL */
+.terminal{
+  width:min(480px,88vw);
+  background:rgba(5,5,12,.85);
+  border:1px solid rgba(29,108,240,.25);
+  border-radius:10px;
+  padding:20px 22px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 60px rgba(29,108,240,.08),inset 0 0 40px rgba(0,0,0,.4);
+  margin-bottom:36px;
+  animation:fadeSlideUp .6s .25s both;
+  min-height:140px;
+}
+.t-bar{
+  display:flex;align-items:center;gap:6px;
+  padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06);
+  margin-bottom:14px;
+}
+.t-dot{width:8px;height:8px;border-radius:50%}
+.t-title{font-size:.65rem;color:rgba(255,255,255,.25);margin-left:auto;letter-spacing:2px}
+.t-lines{display:flex;flex-direction:column;gap:5px;min-height:80px}
+.t-line{font-size:.72rem;line-height:1.5;opacity:0;animation:lineIn .15s forwards}
+@keyframes lineIn{to{opacity:1}}
+.t-line .prompt{color:var(--blue);margin-right:6px}
+.t-line .cmd{color:rgba(255,255,255,.5)}
+.t-line .ok{color:var(--green)}
+.t-line .warn{color:#f59e0b}
+.t-cursor{display:inline-block;width:8px;height:14px;background:var(--blue);animation:blink .7s step-end infinite;vertical-align:middle;margin-left:2px;border-radius:1px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* PROGRESS */
+.progress-wrap{
+  width:min(480px,88vw);
+  animation:fadeSlideUp .6s .4s both;
+  margin-bottom:20px;
+}
+.prog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.prog-label{font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase}
+.prog-pct{font-size:.75rem;color:var(--blue);font-weight:700;font-family:'Share Tech Mono',monospace}
+.prog-track{
+  height:4px;background:rgba(255,255,255,.06);
+  border-radius:2px;overflow:hidden;position:relative;
+}
+.prog-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--blue),var(--blue2));
+  border-radius:2px;
+  transition:width .12s linear;
+  box-shadow:0 0 12px rgba(29,108,240,.6);
+  position:relative;
+}
+.prog-fill::after{
+  content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);
+  width:6px;height:6px;border-radius:50%;
+  background:var(--blue2);
+  box-shadow:0 0 8px var(--blue2);
+}
+.prog-segs{
+  display:flex;gap:4px;margin-top:10px;
+}
+.seg{flex:1;height:2px;background:rgba(255,255,255,.06);border-radius:2px;transition:background .2s}
+.seg.done{background:var(--blue)}
+
+/* STATUS DOTS */
+.status-row{
+  display:flex;gap:20px;
+  animation:fadeSlideUp .6s .55s both;
+  margin-bottom:0;
+}
+.status-item{display:flex;align-items:center;gap:6px;font-size:.62rem;color:rgba(255,255,255,.3);letter-spacing:1px;text-transform:uppercase}
+.sdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.12);flex-shrink:0}
+.sdot.active{background:var(--green);box-shadow:0 0 8px var(--green);animation:sdotPulse 1s infinite}
+.sdot.done{background:var(--blue)}
+@keyframes sdotPulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* SIDE METRICS */
+.side-metric{
+  position:fixed;z-index:4;
+  display:flex;flex-direction:column;gap:14px;
+  font-size:.6rem;color:rgba(255,255,255,.18);
+  letter-spacing:1px;text-transform:uppercase;
+  animation:fadeSlideUp .6s .7s both;
+}
+.side-metric.left{left:28px;top:50%;transform:translateY(-50%)}
+.side-metric.right{right:28px;top:50%;transform:translateY(-50%);text-align:right}
+.sm-val{font-size:.8rem;color:rgba(29,108,240,.6);font-family:'Share Tech Mono',monospace;display:block;margin-bottom:1px}
+.sm-label{display:block}
+
+/* BOTTOM LINE */
+.bottom-line{
+  position:fixed;bottom:0;left:0;right:0;z-index:4;
+  height:2px;
+  background:linear-gradient(90deg,transparent,rgba(29,108,240,.3),transparent);
+}
+
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ENTER ANIMATION */
+#loader{transition:opacity .6s ease,transform .6s ease}
+#loader.out{opacity:0;transform:scale(1.03);pointer-events:none}
+
+/* ── MAIN SITE (hidden until load) ── */
+#site{opacity:0;transition:opacity .5s ease;pointer-events:none}
+#site.vis{opacity:1;pointer-events:auto}
+
+@media(max-width:600px){
+  .side-metric{display:none}
+  .corner{width:28px;height:28px}
+  .corner svg{width:28px;height:28px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="scanlines"></div>
+<div class="top-bar"></div>
+<div class="bottom-line"></div>
+
+<!-- CORNER BRACKETS -->
+<div class="corner tl"><svg viewBox="0 0 40 40" fill="none"><path d="M2 20 L2 2 L20 2" stroke="rgba(29,108,240,.5)" stroke-width="1.5"/></svg></div>
+<div class="corner tr"><svg viewBox="0 0 40 40" fill="none"><path d="M2 20 L2 2 L20 2" stroke="rgba(29,108,240,.5)" stroke-width="1.5"/></svg></div>
+<div class="corner bl"><svg viewBox="0 0 40 40" fill="none"><path d="M2 20 L2 2 L20 2" stroke="rgba(29,108,240,.5)" stroke-width="1.5"/></svg></div>
+<div class="corner br"><svg viewBox="0 0 40 40" fill="none"><path d="M2 20 L2 2 L20 2" stroke="rgba(29,108,240,.5)" stroke-width="1.5"/></svg></div>
+
+<!-- SIDE METRICS -->
+<div class="side-metric left">
+  <div><span class="sm-val" id="sm1">0.00ms</span><span class="sm-label">Latency</span></div>
+  <div><span class="sm-val" id="sm2">0 KB</span><span class="sm-label">Assets</span></div>
+  <div><span class="sm-val" id="sm3">0%</span><span class="sm-label">CPU</span></div>
+</div>
+<div class="side-metric right">
+  <div><span class="sm-val" id="sm4">v2.4.1</span><span class="sm-label">Build</span></div>
+  <div><span class="sm-val" id="sm5">IN-MH</span><span class="sm-label">Region</span></div>
+  <div><span class="sm-val" id="sm6">✓ SSL</span><span class="sm-label">Secure</span></div>
+</div>
+
+<!-- MAIN LOADER -->
+<div id="loader">
+  <div class="loader-logo">
+    <div class="logo-hex">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <div class="logo-wordmark">
+      <div class="logo-main">Life<em>Creation</em></div>
+      <div class="logo-sub-text">We Build · You Grow</div>
+    </div>
+  </div>
+
+  <div class="terminal">
+    <div class="t-bar">
+      <div class="t-dot" style="background:#ef4444"></div>
+      <div class="t-dot" style="background:#f59e0b"></div>
+      <div class="t-dot" style="background:#22c55e"></div>
+      <div class="t-title">SYSTEM BOOT</div>
+    </div>
+    <div class="t-lines" id="tlines"></div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="prog-header">
+      <span class="prog-label">Initializing Systems</span>
+      <span class="prog-pct" id="pct">0%</span>
+    </div>
+    <div class="prog-track">
+      <div class="prog-fill" id="pfill"></div>
+    </div>
+    <div class="prog-segs" id="psegs">
+      <div class="seg" id="s0"></div>
+      <div class="seg" id="s1"></div>
+      <div class="seg" id="s2"></div>
+      <div class="seg" id="s3"></div>
+      <div class="seg" id="s4"></div>
+      <div class="seg" id="s5"></div>
+      <div class="seg" id="s6"></div>
+      <div class="seg" id="s7"></div>
+      <div class="seg" id="s8"></div>
+      <div class="seg" id="s9"></div>
+    </div>
+  </div>
+
+  <div class="status-row">
+    <div class="status-item"><div class="sdot active" id="sd0"></div><span id="st0">BOOTING</span></div>
+    <div class="status-item"><div class="sdot" id="sd1"></div><span id="st1">ASSETS</span></div>
+    <div class="status-item"><div class="sdot" id="sd2"></div><span id="st2">SECURITY</span></div>
+    <div class="status-item"><div class="sdot" id="sd3"></div><span id="st3">LAUNCH</span></div>
+  </div>
+</div>
+
+<script>
+// ── PARTICLE BG CANVAS ──
+(function(){
+  const c=document.getElementById('bg-canvas');
+  const ctx=c.getContext('2d');
+  let W,H;
+  function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
+  resize();window.addEventListener('resize',resize);
+
+  // grid nodes
+  const COLS=Math.ceil(W/80)+1, ROWS=Math.ceil(H/80)+1;
+  const nodes=[];
+  for(let r=0;r<ROWS;r++)for(let col=0;col<COLS;col++){
+    nodes.push({
+      bx:col*80,by:r*80,
+      x:col*80+(Math.random()-.5)*20,
+      y:r*80+(Math.random()-.5)*20,
+      vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,
+      a:Math.random()*.3+.05
+    });
+  }
+
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // bg gradient
+    const g=ctx.createRadialGradient(W*.5,H*.5,0,W*.5,H*.5,W*.7);
+    g.addColorStop(0,'rgba(10,15,40,.95)');
+    g.addColorStop(1,'rgba(5,5,8,1)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+
+    t+=.005;
+    nodes.forEach(n=>{
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<-20||n.x>W+20){n.vx*=-1}
+      if(n.y<-20||n.y>H+20){n.vy*=-1}
+    });
+
+    // connections
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<140){
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x,nodes[i].y);
+          ctx.lineTo(nodes[j].x,nodes[j].y);
+          ctx.strokeStyle=`rgba(29,108,240,${.06*(1-d/140)})`;
+          ctx.lineWidth=.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // nodes
+    nodes.forEach(n=>{
+      ctx.beginPath();ctx.arc(n.x,n.y,1.2,0,Math.PI*2);
+      ctx.fillStyle=`rgba(29,108,240,${n.a})`;ctx.fill();
+    });
+
+    // animated scan line
+    const scanY=(Math.sin(t*.8)+1)/2*H;
+    const sg=ctx.createLinearGradient(0,scanY-60,0,scanY+60);
+    sg.addColorStop(0,'transparent');
+    sg.addColorStop(.5,`rgba(29,108,240,0.04)`);
+    sg.addColorStop(1,'transparent');
+    ctx.fillStyle=sg;ctx.fillRect(0,scanY-60,W,120);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── BOOT SEQUENCE ──
+const bootLines=[
+  {delay:200,  html:'<span class="prompt">▶</span><span class="cmd">init lifecreation_system v2.4.1</span>'},
+  {delay:600,  html:'<span class="prompt">▶</span><span class="cmd">loading design_engine...</span> <span class="ok">OK</span>'},
+  {delay:1000, html:'<span class="prompt">▶</span><span class="cmd">mounting asset_cdn [IN-MH]...</span> <span class="ok">CONNECTED</span>'},
+  {delay:1500, html:'<span class="prompt">▶</span><span class="cmd">verifying ssl_certificate...</span> <span class="ok">VALID ✓</span>'},
+  {delay:1900, html:'<span class="prompt">▶</span><span class="cmd">compiling ui_components...</span> <span class="warn">48ms</span>'},
+  {delay:2400, html:'<span class="prompt">▶</span><span class="cmd">optimizing render_pipeline...</span> <span class="ok">READY</span>'},
+  {delay:2900, html:'<span class="prompt">▶</span><span class="cmd">launching lifecreation.in...</span> <span class="ok">✓ LIVE</span>'},
+];
+
+const tlines=document.getElementById('tlines');
+bootLines.forEach(({delay,html})=>{
+  setTimeout(()=>{
+    const div=document.createElement('div');
+    div.className='t-line';div.innerHTML=html;
+    tlines.appendChild(div);
+    // keep scroll at bottom
+    tlines.scrollTop=tlines.scrollHeight;
+    // add cursor to last line temporarily
+    const existing=tlines.querySelectorAll('.t-cursor');
+    existing.forEach(c=>c.remove());
+    const cur=document.createElement('span');
+    cur.className='t-cursor';
+    div.appendChild(cur);
+  },delay);
+});
+
+// ── PROGRESS BAR ──
+let prog=0;
+const pfill=document.getElementById('pfill');
+const pct=document.getElementById('pct');
+const segs=[0,1,2,3,4,5,6,7,8,9].map(i=>document.getElementById('s'+i));
+
+// side metrics
+let sm1v=0,sm2v=0,sm3v=0;
+function updateMetrics(p){
+  document.getElementById('sm1').textContent=(p*1.8).toFixed(1)+'ms';
+  document.getElementById('sm2').textContent=Math.round(p*24)+' KB';
+  document.getElementById('sm3').textContent=Math.round(p*.65)+'%';
+}
+
+// progress schedule: [time_ms, target_%]
+const schedule=[
+  [300,8],[600,18],[900,30],[1200,45],
+  [1600,58],[2000,70],[2400,82],[2800,92],[3100,100]
+];
+
+schedule.forEach(([t,target])=>{
+  setTimeout(()=>{
+    const from=prog;
+    const dur=280;const start=performance.now();
+    function step(now){
+      const dt=Math.min((now-start)/dur,1);
+      prog=from+(target-from)*dt;
+      pfill.style.width=prog+'%';
+      pct.textContent=Math.round(prog)+'%';
+      updateMetrics(prog);
+      segs.forEach((s,i)=>s.classList.toggle('done',prog>=(i+1)*10));
+      if(dt<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  },t);
+});
+
+// ── STATUS DOTS ──
+setTimeout(()=>{document.getElementById('sd0').className='sdot done';document.getElementById('sd1').className='sdot active';document.getElementById('st0').textContent='BOOTED';},900);
+setTimeout(()=>{document.getElementById('sd1').className='sdot done';document.getElementById('sd2').className='sdot active';document.getElementById('st1').textContent='LOADED';},1800);
+setTimeout(()=>{document.getElementById('sd2').className='sdot done';document.getElementById('sd3').className='sdot active';document.getElementById('st2').textContent='SECURED';},2600);
+setTimeout(()=>{document.getElementById('sd3').className='sdot done';document.getElementById('st3').textContent='LAUNCHED';},3200);
+
+// ── TRANSITION TO MAIN SITE ──
+setTimeout(()=>{
+  const loader=document.getElementById('loader');
+  loader.classList.add('out');
+  setTimeout(()=>{
+    // Redirect to main site
+    window.location.href='lifecreation.html';
+  },700);
+},3400);
+</script>
+</body>
+</html>

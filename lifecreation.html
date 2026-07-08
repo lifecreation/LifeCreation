@@ -724,15 +724,16 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
       <div class="c-form rv" style="transition-delay:.1s">
         <div class="c-form-title">Send Us a Message</div>
         <div class="form-row2">
-          <div class="fg"><label>Your Name</label><input type="text" placeholder="Rahul Sharma"></div>
-          <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+91 98765 43210"></div>
+          <div class="fg"><label>Your Name</label><input id="f-name" type="text" placeholder="Rahul Sharma"></div>
+          <div class="fg"><label>Phone Number</label><input id="f-phone" type="tel" placeholder="+91 98765 43210"></div>
         </div>
-        <div class="fg"><label>Email Address</label><input type="email" placeholder="rahul@yourbusiness.com"></div>
+        <div class="fg"><label>Email Address</label><input id="f-email" type="email" placeholder="rahul@yourbusiness.com"></div>
         <div class="fg">
           <label>Service Needed</label>
-          <select><option>Web Development</option><option>E-Commerce Store</option><option>Portfolio Website</option><option>Business Website</option><option>Landing Page</option><option>SEO Services</option><option>Maintenance Plan</option><option>Mobile App</option><option>Other</option></select>
+          <select id="f-service"><option>Web Development</option><option>E-Commerce Store</option><option>Portfolio Website</option><option>Business Website</option><option>Landing Page</option><option>SEO Services</option><option>Maintenance Plan</option><option>Mobile App</option><option>Other</option></select>
         </div>
-        <div class="fg"><label>Tell Us About Your Project</label><textarea rows="4" placeholder="Describe your project, goals, and timeline..."></textarea></div>
+        <div class="fg"><label>Tell Us About Your Project</label><textarea id="f-msg" rows="4" placeholder="Describe your project, goals, and timeline..."></textarea></div>
+        <div id="f-error" style="display:none;color:#f87171;font-size:.85rem;margin-bottom:10px"></div>
         <button class="btn-p" style="width:100%;justify-content:center;font-size:.95rem;padding:15px;border:none" onclick="handleSend(this)">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           Send Message
@@ -896,13 +897,60 @@ const hs=document.querySelector('.hero-stats');
 if(hs)statsObs.observe(hs);
 
 // ── FORM ──
+// IMPORTANT: replace FORMSPREE_ENDPOINT below with your own Formspree form URL
+// Sign up free at https://formspree.io with lifecreation26@gmail.com, verify it,
+// create a form, and paste the endpoint it gives you (looks like
+// https://formspree.io/f/xxxxxxxx) in place of the placeholder below.
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
 function handleSend(btn){
-  btn.textContent='✓ Message Sent!';
-  btn.style.background='#16a34a';
-  setTimeout(()=>{
-    btn.innerHTML='<svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
-    btn.style.background='';
-  },3200);
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const service = document.getElementById('f-service').value;
+  const message = document.getElementById('f-msg').value.trim();
+  const errEl = document.getElementById('f-error');
+
+  if(!name || !phone || !email || !message){
+    errEl.textContent = 'Please fill in all fields.';
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  fetch(FORMSPREE_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, phone, email, service, message })
+  })
+  .then(res => {
+    if(res.ok){
+      btn.textContent = '✓ Message Sent!';
+      btn.style.background = '#16a34a';
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-phone').value = '';
+      document.getElementById('f-email').value = '';
+      document.getElementById('f-msg').value = '';
+    } else {
+      throw new Error('Send failed');
+    }
+  })
+  .catch(() => {
+    errEl.textContent = 'Something went wrong. Please try WhatsApp or email instead.';
+    errEl.style.display = 'block';
+    btn.innerHTML = originalHTML;
+  })
+  .finally(() => {
+    setTimeout(()=>{
+      btn.disabled = false;
+      btn.style.background = '';
+      btn.innerHTML = originalHTML;
+    }, 3200);
+  });
 }
 </script>
 </body>

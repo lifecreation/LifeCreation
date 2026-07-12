@@ -6,16 +6,22 @@
 <title>Life Creation — Loading</title>
 <style>
   :root{
-    --blue:#1d6cf0;
-    --blue-deep:#1450c8;
-    --bg:#0a0a0a;
-    --spark:#FFB23D;
-    --spark-dim:rgba(255,178,61,0.45);
+    /* Core palette — deep sapphire base, electric blue signature, warm gold spark */
+    --sapphire-deep:#050914;
+    --sapphire:#0a1230;
+    --blue-core:#2E6BFF;
+    --blue-bright:#5B8CFF;
+    --blue-deep:#123199;
+    --violet-glow:rgba(94,68,255,0.16);
+    --gold:#FFC163;
+    --gold-core:#FF9D2E;
+    --gold-dim:rgba(255,157,46,0.4);
     --white:#FFFFFF;
-    --white-70:rgba(255,255,255,0.7);
-    --white-40:rgba(255,255,255,0.4);
-    --track:rgba(255,255,255,0.08);
-    --ease:cubic-bezier(.22,.85,.32,1);
+    --white-70:rgba(255,255,255,0.72);
+    --white-40:rgba(255,255,255,0.38);
+    --track:rgba(255,255,255,0.07);
+    --ease:cubic-bezier(.19,1,.22,1);
+    --ease-soft:cubic-bezier(.33,.86,.42,1);
     --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, monospace;
   }
@@ -24,7 +30,7 @@
 
   html,body{
     height:100%;
-    background:var(--bg);
+    background:var(--sapphire-deep);
     overflow:hidden;
   }
 
@@ -43,8 +49,9 @@
     inset:0;
     z-index:-3;
     background:
-      radial-gradient(120% 90% at 50% 38%, rgba(29,108,240,0.18) 0%, rgba(20,80,200,0.07) 40%, transparent 72%),
-      var(--bg);
+      radial-gradient(130% 95% at 50% 34%, rgba(46,107,255,0.22) 0%, var(--violet-glow) 38%, transparent 70%),
+      linear-gradient(165deg, var(--sapphire) 0%, var(--sapphire-deep) 60%);
+    transition: filter 1.4s var(--ease);
   }
 
   .bg::before,
@@ -53,7 +60,7 @@
     position:absolute;
     width:180vmax;
     height:1px;
-    background:linear-gradient(90deg, transparent, rgba(29,108,240,0.18), transparent);
+    background:linear-gradient(90deg, transparent, rgba(94,140,255,0.22), transparent);
     left:50%;
     top:50%;
   }
@@ -64,7 +71,7 @@
     position:fixed;
     inset:0;
     z-index:-2;
-    opacity:0.045;
+    opacity:0.04;
     mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     pointer-events:none;
@@ -74,7 +81,7 @@
     position:fixed;
     inset:0;
     z-index:-1;
-    background:radial-gradient(120% 100% at 50% 50%, transparent 50%, rgba(0,0,0,0.65) 100%);
+    background:radial-gradient(120% 100% at 50% 50%, transparent 48%, rgba(0,0,0,0.68) 100%);
     pointer-events:none;
   }
 
@@ -100,36 +107,60 @@
 
   .logo-glow{
     position:absolute;
-    inset:-30%;
+    inset:-32%;
     z-index:-1;
-    background:radial-gradient(circle, rgba(29,108,240,0.45) 0%, rgba(29,108,240,0.12) 45%, transparent 72%);
-    filter:blur(18px);
-    opacity:0.7;
+    background:radial-gradient(circle, rgba(46,107,255,0.5) 0%, rgba(46,107,255,0.14) 45%, transparent 72%);
+    filter:blur(20px);
+    opacity:0.65;
     transition:opacity 1.2s var(--ease);
+  }
+
+  .mark{
+    position:relative;
+    overflow:hidden;
   }
 
   .mark img{
     display:block;
     width:100%;
     height:auto;
-    filter:drop-shadow(0 16px 32px rgba(0,0,0,0.55));
+    filter:drop-shadow(0 16px 34px rgba(0,0,0,0.6));
+  }
+
+  /* subtle light sweep across the logo while it loads */
+  .mark::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
+    background-size:250% 250%;
+    background-position:150% 150%;
+    mix-blend-mode:overlay;
+    animation:sweep 2.6s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes sweep{
+    0%{ background-position:150% 150%; }
+    100%{ background-position:-50% -50%; }
   }
 
   .logo-wrap.settled .logo-glow{
-    animation:breathe 4.4s var(--ease) infinite;
+    animation:breathe 4.6s var(--ease-soft) infinite;
   }
   @keyframes breathe{
-    0%,100%{ opacity:0.55; filter:blur(16px); }
-    50%{ opacity:1; filter:blur(26px); }
+    0%,100%{ opacity:0.5; filter:blur(18px); }
+    50%{ opacity:1; filter:blur(30px); }
   }
 
   .logo-wrap.settled .mark img{
-    animation:breatheLogo 4.4s var(--ease) infinite;
+    animation:breatheLogo 4.6s var(--ease-soft) infinite;
   }
   @keyframes breatheLogo{
-    0%,100%{ filter:drop-shadow(0 16px 32px rgba(0,0,0,0.55)) drop-shadow(0 0 14px var(--spark-dim)); }
-    50%{ filter:drop-shadow(0 16px 32px rgba(0,0,0,0.55)) drop-shadow(0 0 26px var(--spark-dim)); }
+    0%,100%{ filter:drop-shadow(0 16px 34px rgba(0,0,0,0.6)) drop-shadow(0 0 14px var(--gold-dim)); }
+    50%{ filter:drop-shadow(0 16px 34px rgba(0,0,0,0.6)) drop-shadow(0 0 28px var(--gold-dim)); }
   }
+
+  .logo-wrap.settled .mark::after{ animation-play-state:paused; opacity:0; }
 
   /* ---------- Wordmark ---------- */
   .wordmark{
@@ -145,9 +176,9 @@
   .wordmark span{
     display:inline-block;
     opacity:0;
-    transform:translateY(8px);
-    transition:opacity .55s var(--ease), transform .55s var(--ease);
-    transition-delay:calc(var(--i) * 35ms);
+    transform:translateY(10px);
+    transition:opacity .6s var(--ease), transform .6s var(--ease);
+    transition-delay:calc(var(--i) * 40ms);
   }
   .wordmark.show span{ opacity:1; transform:translateY(0); }
 
@@ -159,16 +190,16 @@
     text-transform:uppercase;
     opacity:0;
     transform:translateY(4px);
-    transition:opacity .6s var(--ease) .42s, transform .6s var(--ease) .42s;
+    transition:opacity .6s var(--ease) .46s, transform .6s var(--ease) .46s;
   }
   .tagline.show{ opacity:1; transform:translateY(0); }
 
   .rule{
     width:0;
     height:2px;
-    background:var(--spark);
-    box-shadow:0 0 10px var(--spark-dim);
-    transition:width .7s var(--ease) .5s;
+    background:linear-gradient(90deg, var(--gold-core), var(--gold));
+    box-shadow:0 0 10px var(--gold-dim);
+    transition:width .8s var(--ease) .55s;
   }
   .rule.show{ width:46px; }
 
@@ -180,7 +211,7 @@
     align-items:center;
     gap:10px;
     opacity:1;
-    transition:opacity .5s var(--ease);
+    transition:opacity .6s var(--ease);
   }
   .progress-row.fade-out{ opacity:0; }
 
@@ -198,8 +229,9 @@
     height:100%;
     width:0%;
     border-radius:999px;
-    background:linear-gradient(90deg, var(--blue-deep), var(--blue));
-    box-shadow:0 0 10px rgba(29,108,240,0.55), 0 0 20px rgba(29,108,240,0.25);
+    background:linear-gradient(90deg, var(--blue-deep), var(--blue-core) 55%, var(--blue-bright));
+    box-shadow:0 0 10px rgba(46,107,255,0.6), 0 0 22px rgba(46,107,255,0.28);
+    will-change:width;
   }
 
   .progress-spark{
@@ -209,10 +241,10 @@
     width:6px;
     height:6px;
     border-radius:50%;
-    background:var(--spark);
+    background:var(--gold);
     transform:translate(50%,-50%);
-    box-shadow:0 0 6px var(--spark), 0 0 14px var(--spark-dim);
-    transition:opacity .3s var(--ease);
+    box-shadow:0 0 6px var(--gold), 0 0 16px var(--gold-dim);
+    transition:opacity .35s var(--ease);
   }
 
   .meter{
@@ -224,7 +256,7 @@
     letter-spacing:0.14em;
     color:var(--white-40);
   }
-  .meter .pct{ color:var(--white-70); font-weight:500; min-width:3.4ch; }
+  .meter .pct{ color:var(--white-70); font-weight:500; min-width:3.4ch; font-variant-numeric:tabular-nums; }
   .meter .sep{ color:var(--white-40); opacity:0.6; }
   .meter .label{ text-transform:lowercase; }
 
@@ -239,7 +271,7 @@
 </head>
 <body>
 
-  <div class="bg" aria-hidden="true"></div>
+  <div class="bg" id="bg" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
 
@@ -279,6 +311,7 @@
 (function(){
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  var bg          = document.getElementById('bg');
   var logoImg     = document.getElementById('logoImg');
   var logoWrap    = document.getElementById('logoWrap');
   var wordmark    = document.getElementById('wordmark');
@@ -291,12 +324,19 @@
   var statusEl    = document.getElementById('statusLabel');
 
   var SLANT = 16; // diagonal lean of the logo reveal edge
+  var DURATION = 2200; // total ms for the smooth fill
+
+  function easeOutExpo(t){
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
 
   function setReveal(p){
     p = Math.max(0, Math.min(100, p));
     var top = Math.min(100, p + SLANT);
     logoImg.style.clipPath = 'polygon(0% 0%, ' + top + '% 0%, ' + p + '% 100%, 0% 100%)';
     fill.style.width = p + '%';
+    // background warms slightly as progress builds, for a subtle sense of momentum
+    bg.style.filter = 'saturate(' + (1 + p / 260) + ') brightness(' + (1 + p / 700) + ')';
   }
 
   function redirect(){
@@ -323,7 +363,6 @@
 
     setTimeout(redirect, 1500);
   }
-  
 
   if(reduced){
     logoImg.style.clipPath = 'none';
@@ -341,18 +380,17 @@
     return;
   }
 
-  var progress = 0;
   var statuses = ['loading', 'preparing', 'almost there'];
   var statusIdx = 0;
+  var start = null;
+  var done = false;
 
-  function tick(){
-    if(progress >= 100){
-      finish();
-      return;
-    }
-    var remaining = 100 - progress;
-    var step = Math.max(1.6, remaining * 0.09) * (0.7 + Math.random() * 0.7);
-    progress = Math.min(100, progress + step);
+  function frame(ts){
+    if(start === null) start = ts;
+    var elapsed = ts - start;
+    var t = Math.min(1, elapsed / DURATION);
+    var eased = easeOutExpo(t);
+    var progress = eased * 100;
 
     setReveal(progress);
     pctEl.textContent = String(Math.floor(progress)).padStart(2,'0') + '%';
@@ -363,11 +401,16 @@
       statusEl.textContent = statuses[statusIdx];
     }
 
-    setTimeout(tick, 70 + Math.random() * 60);
+    if(t < 1 && !done){
+      requestAnimationFrame(frame);
+    } else if(!done){
+      done = true;
+      finish();
+    }
   }
 
   setReveal(0);
-  setTimeout(tick, 260);
+  setTimeout(function(){ requestAnimationFrame(frame); }, 260);
 })();
 </script>
 </body>

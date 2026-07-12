@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Life Creation — We Build. You Grow.</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -35,7 +35,7 @@ nav{position:fixed;top:0;inset-inline:0;z-index:800;height:68px;display:flex;ali
 nav.scrolled{background:rgba(10,10,10,.88);box-shadow:0 4px 40px rgba(0,0,0,.6)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo img{width:40px;height:40px;border-radius:9px;object-fit:contain}
-.logo-text{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-.2px}
+.logo-text{font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-.2px}
 .logo-text em{color:var(--blue);font-style:normal}
 .nav-links{display:flex;gap:2px;list-style:none;align-items:center}
 .nav-links a{text-decoration:none;font-size:.85rem;font-weight:500;color:var(--white40);padding:6px 14px;border-radius:8px;transition:.2s}
@@ -59,16 +59,18 @@ nav.scrolled{background:rgba(10,10,10,.88);box-shadow:0 4px 40px rgba(0,0,0,.6)}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(29,108,240,.12);border:1px solid var(--blue-border);border-radius:100px;padding:5px 14px;font-size:.75rem;font-weight:600;color:var(--blue);margin-bottom:22px}
 .h-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4.2vw,3.6rem);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-1.5px;margin-bottom:18px}
-.hero-h1 .hl{color:var(--blue)}
+.hero-h1{font-family:'Inter',sans-serif;font-size:clamp(2.2rem,4.2vw,3.6rem);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-1.5px;margin-bottom:18px}
+.hero-h1 .hl{background:linear-gradient(135deg,var(--blue-l),#8b5cf6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--blue)}
 .hero-sub{font-size:1.02rem;color:var(--white70);line-height:1.72;max-width:460px;margin-bottom:34px}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
-.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;text-decoration:none;border:none;border-radius:12px;padding:14px 26px;font-size:.92rem;font-weight:700;cursor:pointer;transition:.25s;box-shadow:0 4px 20px rgba(29,108,240,.3)}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;text-decoration:none;border:none;border-radius:12px;padding:14px 26px;font-size:.92rem;font-weight:700;cursor:pointer;transition:.25s;box-shadow:0 4px 20px rgba(29,108,240,.3);position:relative;overflow:hidden}
+.btn-p::before{content:'';position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .55s ease}
+.btn-p:hover::before{left:125%}
 .btn-p:hover{background:var(--blue-d);box-shadow:var(--shadow-blue);transform:translateY(-2px)}
 .btn-s{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;text-decoration:none;border:1.5px solid var(--white15);border-radius:12px;padding:14px 26px;font-size:.92rem;font-weight:600;cursor:pointer;transition:.25s;backdrop-filter:blur(8px)}
 .btn-s:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
 .hero-stats{display:flex;gap:36px}
-.stat-n{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:900;color:#fff;line-height:1}
+.stat-n{font-family:'Inter',sans-serif;font-size:1.9rem;font-weight:900;color:#fff;line-height:1}
 .stat-l{font-size:.75rem;color:var(--white40);margin-top:3px;font-weight:500}
 
 /* HERO VISUAL */
@@ -85,7 +87,7 @@ nav.scrolled{background:rgba(10,10,10,.88);box-shadow:0 4px 40px rgba(0,0,0,.6)}
 .br-logo-b{width:22px;height:22px;background:var(--blue);border-radius:5px}
 .br-nav-l{display:flex;gap:8px;margin-left:auto}
 .br-nl{width:30px;height:5px;background:rgba(255,255,255,.1);border-radius:3px}
-.br-h{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-.3px}
+.br-h{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-.3px}
 .br-p{font-size:.45rem;color:rgba(255,255,255,.45);margin-bottom:12px;line-height:1.5}
 .br-btn2{display:inline-block;background:var(--blue);color:#fff;border-radius:5px;padding:5px 12px;font-size:.5rem;font-weight:700}
 .br-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 18px;background:#111}
@@ -96,7 +98,7 @@ nav.scrolled{background:rgba(10,10,10,.88);box-shadow:0 4px 40px rgba(0,0,0,.6)}
 .br-cs{font-size:.38rem;color:rgba(255,255,255,.3)}
 .br-metrics{background:#0a0a0a;padding:12px 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .br-m{text-align:center}
-.br-mv{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:800;color:var(--blue)}
+.br-mv{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:800;color:var(--blue)}
 .br-ml{font-size:.37rem;color:rgba(255,255,255,.3)}
 
 .phone-fl{position:absolute;bottom:-20px;right:-24px;width:110px;background:#111;border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:8px 6px;box-shadow:0 20px 50px rgba(0,0,0,.7);animation:float 4s 1s ease-in-out infinite}
@@ -112,7 +114,7 @@ nav.scrolled{background:rgba(10,10,10,.88);box-shadow:0 4px 40px rgba(0,0,0,.6)}
 .chip-live .cdot{width:8px;height:8px;background:#22c55e;border-radius:50%}
 
 /* ─── TICKER ─── */
-.ticker{background:var(--blue);padding:14px 0;overflow:hidden;position:relative}
+.ticker{background:linear-gradient(90deg,var(--blue-d),var(--blue) 50%,#6366f1);padding:14px 0;overflow:hidden;position:relative}
 .ticker-inner{display:flex;gap:0;white-space:nowrap;animation:tick 28s linear infinite}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ticker-item{display:inline-flex;align-items:center;gap:10px;padding:0 32px;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.9)}
@@ -122,7 +124,7 @@ nav.scrolled{background:rgba(10,10,10,.88);box-shadow:0 4px 40px rgba(0,0,0,.6)}
 section{padding:100px 5%}
 .si{max-width:1200px;margin:0 auto}
 .lbl{font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
-.sh1{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,2.8vw,2.6rem);font-weight:900;letter-spacing:-1px;margin-bottom:14px}
+.sh1{font-family:'Inter',sans-serif;font-size:clamp(1.7rem,2.8vw,2.6rem);font-weight:900;letter-spacing:-1px;margin-bottom:14px}
 .ssub{font-size:.98rem;line-height:1.7;max-width:540px}
 .sec-header{text-align:center;margin-bottom:64px}
 .sec-header .ssub{margin:0 auto}
@@ -136,7 +138,9 @@ section{padding:100px 5%}
 .svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:.3s}
 .svc-card:hover{border-color:rgba(29,108,240,.25);box-shadow:0 8px 30px rgba(29,108,240,.1);transform:translateY(-6px)}
 .svc-card:hover::before{transform:scaleX(1)}
-.svc-icon{width:42px;height:42px;background:var(--blue-tint);border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.svc-icon{width:42px;height:42px;background:linear-gradient(135deg,rgba(29,108,240,.16),rgba(99,102,241,.1));border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;transition:.3s}
+.svc-card:hover .svc-icon{background:linear-gradient(135deg,var(--blue),#6366f1)}
+.svc-card:hover .svc-icon svg{stroke:#fff}
 .svc-icon svg{width:21px;height:21px;stroke:var(--blue);fill:none;stroke-width:2}
 .svc-n{font-weight:700;color:#0a0a0a;margin-bottom:6px;font-size:.95rem}
 .svc-d{font-size:.82rem;color:#666;line-height:1.6}
@@ -149,7 +153,9 @@ section{padding:100px 5%}
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .why-card{background:var(--white08);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:28px 22px;transition:.3s;position:relative;overflow:hidden}
 .why-card:hover{background:rgba(29,108,240,.08);border-color:var(--blue-border);transform:translateY(-4px);box-shadow:0 12px 40px rgba(29,108,240,.15)}
-.why-ic{width:42px;height:42px;background:rgba(29,108,240,.15);border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.why-ic{width:42px;height:42px;background:linear-gradient(135deg,rgba(29,108,240,.22),rgba(99,102,241,.12));border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;transition:.3s}
+.why-card:hover .why-ic{background:linear-gradient(135deg,var(--blue),#6366f1)}
+.why-card:hover .why-ic svg{stroke:#fff}
 .why-ic svg{width:21px;height:21px;stroke:var(--blue);fill:none;stroke-width:2}
 .why-n{font-weight:700;color:#fff;margin-bottom:6px}
 .why-d{font-size:.85rem;color:var(--white40);line-height:1.6}
@@ -162,15 +168,16 @@ section{padding:100px 5%}
 .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .pkg{background:#fff;border:1.5px solid #e8eaf0;border-radius:var(--radius-xl);padding:30px 26px 26px;display:flex;flex-direction:column;position:relative;transition:.3s}
 .pkg:hover{box-shadow:0 16px 50px rgba(0,0,0,.1);transform:translateY(-6px)}
-.pkg.feat{border:2px solid var(--blue);background:#fff;box-shadow:0 0 40px rgba(29,108,240,.08)}
+.pkg.feat{border:2px solid var(--blue);background:#fff;box-shadow:0 0 40px rgba(29,108,240,.08);animation:pkgGlow 3s ease-in-out infinite}
+@keyframes pkgGlow{0%,100%{box-shadow:0 0 30px rgba(29,108,240,.1)}50%{box-shadow:0 0 46px rgba(29,108,240,.22)}}
 .pkg.feat:hover{box-shadow:0 16px 50px rgba(29,108,240,.2);transform:translateY(-6px)}
 .pop-b{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;padding:4px 16px;border-radius:20px;font-size:.68rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
 .pkg-lbl{font-size:.68rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.pkg-name{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:900;color:#0a0a0a;margin-bottom:4px}
+.pkg-name{font-family:'Inter',sans-serif;font-size:1.35rem;font-weight:900;color:#0a0a0a;margin-bottom:4px}
 .pkg-tag{font-size:.8rem;color:#888;margin-bottom:18px}
 .pkg-orig{font-size:.8rem;color:#aaa;text-decoration:line-through;margin-bottom:3px}
 .pkg-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.pkg-price{font-family:'Syne',sans-serif;font-size:2.1rem;font-weight:900;color:#0a0a0a;line-height:1}
+.pkg-price{font-family:'Inter',sans-serif;font-size:2.1rem;font-weight:900;color:#0a0a0a;line-height:1}
 .pkg-price.fp{color:var(--blue)}
 .disc-b{background:rgba(34,197,94,.12);color:#16a34a;border:1px solid rgba(34,197,94,.25);border-radius:6px;padding:3px 8px;font-size:.7rem;font-weight:700}
 .pkg-note{font-size:.73rem;color:#aaa;margin-bottom:18px}
@@ -181,12 +188,35 @@ section{padding:100px 5%}
 .fi svg{width:9px;height:9px;stroke:var(--blue);fill:none;stroke-width:3}
 .pkg-cta{margin-top:22px}
 
+/* ─── LANDING PAGE (white/blue tint) ─── */
+#landing{background:#fff}
+#landing .sh1{color:#0a0a0a}
+#landing .ssub{color:#555}
+#landing .lbl{color:var(--blue)}
+.lp-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;background:#f5f7ff;border:1.5px solid #e8eaf0;border-radius:var(--radius-xl);padding:40px}
+.lp-info h3{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:900;color:#0a0a0a;margin-bottom:10px}
+.lp-info p{font-size:.9rem;color:#555;line-height:1.7;margin-bottom:18px;max-width:440px}
+.lp-tags{display:flex;flex-wrap:wrap;gap:8px}
+.lp-tag{background:rgba(29,108,240,.1);color:var(--blue);border:1px solid var(--blue-border);border-radius:100px;padding:5px 12px;font-size:.76rem;font-weight:600}
+.lp-card{background:#fff;border:2px solid var(--blue);border-radius:var(--radius-xl);padding:28px 26px 24px;box-shadow:0 0 40px rgba(29,108,240,.1)}
+.lp-card .pkg-lbl{margin-top:0}
+
+/* ─── DOMAIN & HOSTING (white) ─── */
+#domainhosting{background:#fff}
+#domainhosting .sh1{color:#0a0a0a}
+#domainhosting .ssub{color:#555}
+#domainhosting .lbl{color:var(--blue)}
+.dh-note{background:rgba(29,108,240,.08);border:1px solid var(--blue-border);border-radius:var(--radius);padding:16px 22px;margin-top:28px;font-size:.85rem;color:#444;text-align:center;max-width:720px;margin-left:auto;margin-right:auto}
+.dh-note strong{color:var(--blue)}
+
 /* ─── PORTFOLIO (dark) ─── */
 #portfolio{background:var(--black3)}
 #portfolio .sh1{color:#fff}
 #portfolio .ssub{color:var(--white70)}
-.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.port-card{background:var(--white08);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-xl);overflow:hidden;transition:.35s;cursor:pointer}
+.port-slider-wrap{position:relative}
+.port-slider{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
+.port-slider::-webkit-scrollbar{display:none}
+.port-card{background:var(--white08);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-xl);overflow:hidden;transition:.35s;cursor:pointer;flex:0 0 calc((100% - 40px)/3);scroll-snap-align:start}
 .port-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.6);border-color:var(--blue-border)}
 .port-thumb{aspect-ratio:16/10;position:relative;overflow:hidden}
 .port-thumb img{width:100%;height:100%;object-fit:cover}
@@ -198,6 +228,13 @@ section{padding:100px 5%}
 .pt-tag{font-size:.7rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
 .pt-n{font-weight:700;color:#fff;margin-bottom:5px}
 .pt-d{font-size:.83rem;color:var(--white40);line-height:1.5}
+.port-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:24px}
+.port-arrow{width:42px;height:42px;border-radius:50%;background:var(--white08);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s}
+.port-arrow:hover{background:var(--blue);border-color:var(--blue)}
+.port-arrow svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.5}
+.port-dots{display:flex;gap:7px}
+.port-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:.2s}
+.port-dot.on{background:var(--blue);width:20px;border-radius:4px}
 /* thumb gradients */
 .tg1{background:linear-gradient(135deg,#03081a,#1d4ed8)}
 .tg2{background:linear-gradient(135deg,#060d1c,#1e40af)}
@@ -221,7 +258,7 @@ section{padding:100px 5%}
 .proc-steps{display:flex;gap:0;align-items:flex-start;position:relative;margin-top:20px}
 .proc-steps::before{content:'';position:absolute;top:22px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--blue),#6366f1);z-index:0}
 .proc-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;padding:0 10px}
-.ps-num{width:44px;height:44px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:900;font-size:.95rem;color:#fff;margin-bottom:14px;box-shadow:0 4px 16px rgba(29,108,240,.4)}
+.ps-num{width:44px;height:44px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:900;font-size:.95rem;color:#fff;margin-bottom:14px;box-shadow:0 4px 16px rgba(29,108,240,.4)}
 .ps-n{font-weight:700;color:#0a0a0a;margin-bottom:5px;font-size:.92rem}
 .ps-d{font-size:.8rem;color:#666;line-height:1.5}
 
@@ -232,12 +269,12 @@ section{padding:100px 5%}
 .maint-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .maint-card{background:var(--white08);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-xl);padding:30px 24px 24px;display:flex;flex-direction:column;transition:.3s;position:relative}
 .maint-card:hover{transform:translateY(-6px);box-shadow:0 16px 50px rgba(0,0,0,.4)}
-.maint-card.feat{border:2px solid var(--blue);background:rgba(29,108,240,.05)}
+.maint-card.feat{border:2px solid var(--blue);background:rgba(29,108,240,.05);animation:pkgGlow 3s ease-in-out infinite}
 .maint-pop{position:absolute;top:-11px;left:20px;background:var(--blue);color:#fff;padding:3px 12px;border-radius:6px;font-size:.68rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
 .maint-lbl{font-size:.68rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.maint-name{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:4px}
+.maint-name{font-family:'Inter',sans-serif;font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:4px}
 .maint-sub{font-size:.8rem;color:var(--white40);margin-bottom:16px}
-.maint-price{font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--blue);line-height:1}
+.maint-price{font-family:'Inter',sans-serif;font-size:2rem;font-weight:900;color:var(--blue);line-height:1}
 .maint-price span{font-size:.88rem;color:var(--white40)}
 .maint-save{font-size:.74rem;color:var(--white40);margin-top:4px;margin-bottom:20px}
 .maint-div{height:1px;background:rgba(255,255,255,.07);margin:16px 0}
@@ -264,7 +301,7 @@ section{padding:100px 5%}
 .c-lbl{font-size:.73rem;color:var(--white40);margin-bottom:2px}
 .c-val{font-weight:700;color:#fff;font-size:.9rem}
 .c-form{background:var(--white08);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-xl);padding:34px}
-.c-form-title{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:22px}
+.c-form-title{font-family:'Inter',sans-serif;font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:22px}
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:.8rem;font-weight:600;color:var(--white70);margin-bottom:6px}
 .fg input,.fg textarea,.fg select{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 14px;font-size:.88rem;font-family:'Inter',sans-serif;color:#fff;outline:none;resize:vertical;transition:.2s}
@@ -310,13 +347,14 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .why-grid{grid-template-columns:repeat(2,1fr)}
   .pkg-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
-  .port-grid{grid-template-columns:repeat(2,1fr)}
+  .port-card{flex:0 0 calc((100% - 20px)/2)}
   .maint-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
   .hero-inner{grid-template-columns:1fr;gap:40px}
   .hero-visual{display:none}
   .ft-top{grid-template-columns:1fr 1fr}
   .proc-steps{flex-wrap:wrap;gap:20px}
   .proc-steps::before{display:none}
+  .lp-wrap{grid-template-columns:1fr;padding:28px}
 }
 @media(max-width:768px){
   section{padding:70px 5%}
@@ -324,7 +362,7 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
   .hamburger{display:flex}
   .services-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
-  .port-grid{grid-template-columns:1fr}
+  .port-card{flex:0 0 88%}
   .contact-grid{grid-template-columns:1fr}
   .ft-top{grid-template-columns:1fr}
   .ft-bot{flex-direction:column;gap:8px;text-align:center}
@@ -352,7 +390,10 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#packages">Packages</a></li>
+    <li><a href="#landing">Landing Page</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#maintenance">Maintenance</a></li>
+    <li><a href="#domainhosting">Domain & Hosting</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Get a Quote →</a>
@@ -511,8 +552,8 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
         <div class="pkg-lbl">Basic Plan</div>
         <div class="pkg-name">Starter</div>
         <div class="pkg-tag">Perfect for small businesses & startups</div>
-        <div class="pkg-orig">₹11,427 original price</div>
-        <div class="pkg-row"><div class="pkg-price">₹7,999</div><div class="disc-b">30% OFF</div></div>
+        <div class="pkg-orig">₹8,570 original price</div>
+        <div class="pkg-row"><div class="pkg-price">₹5,999</div><div class="disc-b">30% OFF</div></div>
         <div class="pkg-note">One-time payment · No hidden charges</div>
         <div class="pkg-div"></div>
         <ul class="pkg-feats">
@@ -530,8 +571,8 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
         <div class="pkg-lbl" style="margin-top:18px">Standard Plan</div>
         <div class="pkg-name">Professional</div>
         <div class="pkg-tag">Best for growing businesses</div>
-        <div class="pkg-orig">₹16,999 original price</div>
-        <div class="pkg-row"><div class="pkg-price fp">₹11,899</div><div class="disc-b">30% OFF</div></div>
+        <div class="pkg-orig">₹12,856 original price</div>
+        <div class="pkg-row"><div class="pkg-price fp">₹8,999</div><div class="disc-b">30% OFF</div></div>
         <div class="pkg-note">One-time payment · No hidden charges</div>
         <div class="pkg-div"></div>
         <ul class="pkg-feats">
@@ -549,8 +590,8 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
         <div class="pkg-lbl">Premium Plan</div>
         <div class="pkg-name">Enterprise</div>
         <div class="pkg-tag">For serious businesses & online stores</div>
-        <div class="pkg-orig">₹39,999 original price</div>
-        <div class="pkg-row"><div class="pkg-price">₹27,999</div><div class="disc-b">30% OFF</div></div>
+        <div class="pkg-orig">₹34,284 original price</div>
+        <div class="pkg-row"><div class="pkg-price">₹23,999</div><div class="disc-b">30% OFF</div></div>
         <div class="pkg-note">One-time payment · No hidden charges</div>
         <div class="pkg-div"></div>
         <ul class="pkg-feats">
@@ -568,6 +609,47 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
   </div>
 </section>
 
+<!-- LANDING PAGE (single plan) -->
+<section id="landing">
+  <div class="si">
+    <div class="sec-header rv">
+      <div class="lbl">Landing Page Only</div>
+      <h2 class="sh1">Just Need One High-Converting Page?</h2>
+      <p class="ssub">A single, focused landing page — perfect for ads, offers, or a quick online presence. Priced right for tier-3 city budgets.</p>
+    </div>
+    <div class="lp-wrap rv">
+      <div class="lp-info">
+        <h3>1-Page Landing Design</h3>
+        <p>Best for launching a single offer, product, event, or service fast — without paying for a full multi-page website. Clean, mobile-first, and built to convert visitors into leads.</p>
+        <div class="lp-tags">
+          <span class="lp-tag">Delivered in 3-4 Days</span>
+          <span class="lp-tag">Mobile-First</span>
+          <span class="lp-tag">Lead Capture Form</span>
+          <span class="lp-tag">WhatsApp Button</span>
+        </div>
+      </div>
+      <div class="lp-card">
+        <div class="pkg-lbl">Single Plan</div>
+        <div class="pkg-name">Landing Page</div>
+        <div class="pkg-tag">Perfect for offers, ads & quick launches</div>
+        <div class="pkg-orig">₹4,999 original price</div>
+        <div class="pkg-row"><div class="pkg-price fp">₹3,499</div><div class="disc-b">30% OFF</div></div>
+        <div class="pkg-note">One-time payment · No hidden charges</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-feats">
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>1 High-Converting Page</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Mobile-Friendly Design</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Lead / Enquiry Form</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>WhatsApp Click-to-Chat</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Basic SEO Setup</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Fast Loading (Under 2s)</li>
+        </ul>
+        <div class="pkg-cta"><a href="#contact" class="btn-p" style="width:100%;justify-content:center">Get Started</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="si">
@@ -576,30 +658,37 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
       <h2 class="sh1" style="color:#fff">Work We're Proud Of</h2>
       <p class="ssub" style="color:var(--white70)">A selection of projects that delivered real impact for real businesses.</p>
     </div>
-    <div class="port-grid">
-      <div class="port-card rv">
-        <div class="port-thumb tg1"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml b"></div><div class="tml"></div><div class="tml s"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
-        <div class="port-body"><div class="pt-tag">E-Commerce</div><div class="pt-n">StyleShop — Fashion Store</div><div class="pt-d">Full-stack online store with cart, payments & admin panel. 3× increase in conversions.</div></div>
+    <div class="port-slider-wrap">
+      <div class="port-slider rv" id="port-slider">
+        <div class="port-card">
+          <div class="port-thumb tg1"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml b"></div><div class="tml"></div><div class="tml s"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
+          <div class="port-body"><div class="pt-tag">E-Commerce</div><div class="pt-n">StyleShop — Fashion Store</div><div class="pt-d">Full-stack online store with cart, payments & admin panel. 3× increase in conversions.</div></div>
+        </div>
+        <div class="port-card">
+          <div class="port-thumb tg2"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml"></div><div class="tml b"></div><div class="tml s"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
+          <div class="port-body"><div class="pt-tag">Mobile App</div><div class="pt-n">FitTrack — Fitness App</div><div class="pt-d">Android fitness companion with tracking, plans & WhatsApp sharing. 10k+ downloads.</div></div>
+        </div>
+        <div class="port-card">
+          <div class="port-thumb tg3"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml s"></div><div class="tml b"></div><div class="tml"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
+          <div class="port-body"><div class="pt-tag">Business Website</div><div class="pt-n">PrimeLegal — Law Firm</div><div class="pt-d">Professional site with booking system, SEO strategy & live chat integration.</div></div>
+        </div>
+        <div class="port-card">
+          <div class="port-thumb tg4"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml b"></div><div class="tml s"></div><div class="tml"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
+          <div class="port-body"><div class="pt-tag">SaaS Platform</div><div class="pt-n">InvoicePro — Billing Tool</div><div class="pt-d">Web app with secure login, invoice generation & payment tracking features.</div></div>
+        </div>
+        <div class="port-card">
+          <div class="port-thumb tg5"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml xs"></div><div class="tml b"></div><div class="tml s"></div><div class="tml"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
+          <div class="port-body"><div class="pt-tag">Restaurant</div><div class="pt-n">TasteHouse — Food Ordering</div><div class="pt-d">Mobile-first restaurant site with ordering, reservations & menu management.</div></div>
+        </div>
+        <div class="port-card">
+          <div class="port-thumb tg6"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml s"></div><div class="tml"></div><div class="tml b"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
+          <div class="port-body"><div class="pt-tag">Education</div><div class="pt-n">LearnHub — EdTech Platform</div><div class="pt-d">Course platform with video hosting, progress tracking & student dashboard.</div></div>
+        </div>
       </div>
-      <div class="port-card rv" style="transition-delay:.07s">
-        <div class="port-thumb tg2"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml"></div><div class="tml b"></div><div class="tml s"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
-        <div class="port-body"><div class="pt-tag">Mobile App</div><div class="pt-n">FitTrack — Fitness App</div><div class="pt-d">Android fitness companion with tracking, plans & WhatsApp sharing. 10k+ downloads.</div></div>
-      </div>
-      <div class="port-card rv" style="transition-delay:.14s">
-        <div class="port-thumb tg3"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml s"></div><div class="tml b"></div><div class="tml"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
-        <div class="port-body"><div class="pt-tag">Business Website</div><div class="pt-n">PrimeLegal — Law Firm</div><div class="pt-d">Professional site with booking system, SEO strategy & live chat integration.</div></div>
-      </div>
-      <div class="port-card rv" style="transition-delay:.07s">
-        <div class="port-thumb tg4"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml b"></div><div class="tml s"></div><div class="tml"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
-        <div class="port-body"><div class="pt-tag">SaaS Platform</div><div class="pt-n">InvoicePro — Billing Tool</div><div class="pt-d">Web app with secure login, invoice generation & payment tracking features.</div></div>
-      </div>
-      <div class="port-card rv" style="transition-delay:.14s">
-        <div class="port-thumb tg5"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml xs"></div><div class="tml b"></div><div class="tml s"></div><div class="tml"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
-        <div class="port-body"><div class="pt-tag">Restaurant</div><div class="pt-n">TasteHouse — Food Ordering</div><div class="pt-d">Mobile-first restaurant site with ordering, reservations & menu management.</div></div>
-      </div>
-      <div class="port-card rv" style="transition-delay:.21s">
-        <div class="port-thumb tg6"><div class="pt-bg"><div class="tmock"><div class="tmb"><div class="tmd"></div><div class="tmd"></div><div class="tmd"></div></div><div class="tmc"><div class="tml s"></div><div class="tml"></div><div class="tml b"></div><div class="tml xs"></div></div></div></div><div class="pt-over"><div class="pt-view">View Project →</div></div></div>
-        <div class="port-body"><div class="pt-tag">Education</div><div class="pt-n">LearnHub — EdTech Platform</div><div class="pt-d">Course platform with video hosting, progress tracking & student dashboard.</div></div>
+      <div class="port-nav">
+        <div class="port-arrow" id="port-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div>
+        <div class="port-dots" id="port-dots"></div>
+        <div class="port-arrow" id="port-next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
       </div>
     </div>
   </div>
@@ -629,15 +718,15 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
     <div class="sec-header rv">
       <div class="lbl">Maintenance Plans</div>
       <h2 class="sh1" style="color:#fff">Web Maintenance & Support</h2>
-      <p class="ssub" style="color:var(--white70)">Keep your website running perfectly. Choose the plan that fits your needs.</p>
+      <p class="ssub" style="color:var(--white70)">Keep your website running perfectly. Tier-3 city friendly pricing — choose the plan that fits your needs.</p>
     </div>
     <div class="maint-grid">
       <div class="maint-card rv-l">
         <div class="maint-lbl">Basic Plan</div>
         <div class="maint-name">Starter</div>
         <div class="maint-sub">Perfect for small sites</div>
-        <div class="maint-price">₹499<span>/month</span></div>
-        <div class="maint-save">or ₹4,990/year — Save ₹910</div>
+        <div class="maint-price">₹399<span>/month</span></div>
+        <div class="maint-save">or ₹3,990/year — Save ₹798</div>
         <div class="maint-div"></div>
         <ul class="maint-feats">
           <li><div class="mci on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Monthly Updates</li>
@@ -654,8 +743,8 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
         <div class="maint-lbl" style="margin-top:18px">Standard Plan</div>
         <div class="maint-name">Professional</div>
         <div class="maint-sub">Best for growing sites</div>
-        <div class="maint-price">₹999<span>/month</span></div>
-        <div class="maint-save">or ₹9,990/year — Save ₹1,890</div>
+        <div class="maint-price">₹799<span>/month</span></div>
+        <div class="maint-save">or ₹7,990/year — Save ₹1,598</div>
         <div class="maint-div"></div>
         <ul class="maint-feats">
           <li><div class="mci on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Regular Updates</li>
@@ -671,8 +760,8 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
         <div class="maint-lbl">Premium Plan</div>
         <div class="maint-name">Enterprise</div>
         <div class="maint-sub">All-in-one protection</div>
-        <div class="maint-price">₹1,599<span>/month</span></div>
-        <div class="maint-save">or ₹15,990/year — Save ₹2,898</div>
+        <div class="maint-price">₹1,299<span>/month</span></div>
+        <div class="maint-save">or ₹12,990/year — Save ₹2,598</div>
         <div class="maint-div"></div>
         <ul class="maint-feats">
           <li><div class="mci on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Regular Updates</li>
@@ -684,6 +773,71 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
         </ul>
         <a href="#contact" class="btn-s" style="width:100%;justify-content:center">Choose Plan</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAIN & HOSTING -->
+<section id="domainhosting">
+  <div class="si">
+    <div class="sec-header rv">
+      <div class="lbl">Domain & Hosting</div>
+      <h2 class="sh1">Keep Your Website Live Every Year</h2>
+      <p class="ssub">Your domain and hosting renew annually. Simple, transparent pricing — your first year is FREE with any website package.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg rv-l">
+        <div class="pkg-lbl">Domain Only</div>
+        <div class="pkg-name">Domain Registration</div>
+        <div class="pkg-tag">.com / .in domain of your choice</div>
+        <div class="pkg-row"><div class="pkg-price">₹799<span style="font-size:.9rem;color:#888;font-weight:600"> /year</span></div></div>
+        <div class="pkg-note">Renews annually · Cancel anytime</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-feats">
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>.com, .in, .co.in & more</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Free DNS Management</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Free WHOIS Privacy Protection</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Renewal Reminders</li>
+        </ul>
+        <div class="pkg-cta"><a href="#contact" class="btn-s" style="width:100%;justify-content:center;border-color:#ddd;color:#333">Get Started</a></div>
+      </div>
+      <div class="pkg feat rv-s" style="transition-delay:.09s">
+        <div class="pop-b">⭐ Most Popular</div>
+        <div class="pkg-lbl" style="margin-top:18px">Bundle</div>
+        <div class="pkg-name">Domain + Hosting</div>
+        <div class="pkg-tag">Everything you need in one plan</div>
+        <div class="pkg-orig">₹2,598 original price</div>
+        <div class="pkg-row"><div class="pkg-price fp">₹1,999<span style="font-size:.9rem;color:#888;font-weight:600"> /year</span></div><div class="disc-b">Save ₹599</div></div>
+        <div class="pkg-note">Renews annually · First year FREE with any package</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-feats">
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Domain + Hosting Combined</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Free SSL Certificate</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>2 Professional Email Accounts</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Free Setup & DNS Connect</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Priority Renewal Support</li>
+        </ul>
+        <div class="pkg-cta"><a href="#contact" class="btn-p" style="width:100%;justify-content:center">Get Started</a></div>
+      </div>
+      <div class="pkg rv-r" style="transition-delay:.18s">
+        <div class="pkg-lbl">Hosting Only</div>
+        <div class="pkg-name">Web Hosting</div>
+        <div class="pkg-tag">Fast, secure SSD hosting</div>
+        <div class="pkg-row"><div class="pkg-price">₹1,799<span style="font-size:.9rem;color:#888;font-weight:600"> /year</span></div></div>
+        <div class="pkg-note">Renews annually · Cancel anytime</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-feats">
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Fast SSD Hosting</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Free SSL Certificate</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>99.9% Uptime Guarantee</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>1 Professional Email Account</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Daily Backups</li>
+        </ul>
+        <div class="pkg-cta"><a href="#contact" class="btn-s" style="width:100%;justify-content:center;border-color:#ddd;color:#333">Get Started</a></div>
+      </div>
+    </div>
+    <div class="dh-note rv">
+      💡 <strong>Good to know:</strong> The first year of domain & hosting is included FREE with every website package above. These prices apply from year 2 onwards (renewal), so there are never any hidden surprises.
     </div>
   </div>
 </section>
@@ -831,7 +985,7 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
 const sp = document.getElementById('sp');
 const btt = document.getElementById('btt');
 const navbar = document.getElementById('nav');
-const sids = ['hero','services','why','packages','portfolio','process','maintenance','contact'];
+const sids = ['hero','services','why','packages','landing','portfolio','process','maintenance','domainhosting','contact'];
 const nlinks = document.querySelectorAll('.nav-links a');
 
 let raf=false, sy=0;
@@ -874,8 +1028,6 @@ function toggleNav(){
 
 // ── REVEAL ──
 const rvels=document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s');
-new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vi');observer.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'}).observe;
-// need to store ref
 const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vi');}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 rvels.forEach(el=>observer.observe(el));
 
@@ -895,6 +1047,73 @@ const statsObs=new IntersectionObserver((entries)=>{
 },{threshold:.5});
 const hs=document.querySelector('.hero-stats');
 if(hs)statsObs.observe(hs);
+
+// ── PORTFOLIO SLIDER ──
+(function(){
+  const slider = document.getElementById('port-slider');
+  const prev = document.getElementById('port-prev');
+  const next = document.getElementById('port-next');
+  const dotsWrap = document.getElementById('port-dots');
+  if(!slider) return;
+  const cards = slider.querySelectorAll('.port-card');
+
+  function visibleCount(){
+    if(window.innerWidth<=768) return 1;
+    if(window.innerWidth<=1100) return 2;
+    return 3;
+  }
+
+  function pageCount(){
+    return Math.max(1, Math.ceil(cards.length / visibleCount()));
+  }
+
+  function buildDots(){
+    dotsWrap.innerHTML='';
+    const pages = pageCount();
+    for(let i=0;i<pages;i++){
+      const d=document.createElement('div');
+      d.className='port-dot'+(i===0?' on':'');
+      d.addEventListener('click',()=>goToPage(i));
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function currentPage(){
+    const vc = visibleCount();
+    const cardW = cards[0].getBoundingClientRect().width + 20;
+    return Math.round(slider.scrollLeft / (cardW*vc));
+  }
+
+  function updateDots(){
+    const dots = dotsWrap.querySelectorAll('.port-dot');
+    const p = currentPage();
+    dots.forEach((d,i)=>d.classList.toggle('on', i===p));
+  }
+
+  function goToPage(p){
+    const vc = visibleCount();
+    const cardW = cards[0].getBoundingClientRect().width + 20;
+    slider.scrollTo({left: p*cardW*vc, behavior:'smooth'});
+  }
+
+  prev.addEventListener('click',()=>{
+    const p = Math.max(0, currentPage()-1);
+    goToPage(p);
+  });
+  next.addEventListener('click',()=>{
+    const p = Math.min(pageCount()-1, currentPage()+1);
+    goToPage(p);
+  });
+
+  let scrollTimer;
+  slider.addEventListener('scroll',()=>{
+    clearTimeout(scrollTimer);
+    scrollTimer=setTimeout(updateDots,80);
+  },{passive:true});
+
+  window.addEventListener('resize',()=>{ buildDots(); updateDots(); });
+  buildDots();
+})();
 
 // ── FORM ──
 // IMPORTANT: replace FORMSPREE_ENDPOINT below with your own Formspree form URL

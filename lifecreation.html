@@ -18,8 +18,8 @@
   --shadow-blue:0 8px 40px rgba(29,108,240,.4);
   --shadow-card:0 4px 30px rgba(0,0,0,.25);
 }
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--white);color:#111;line-height:1.6;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{font-family:'Inter',sans-serif;background:var(--white);color:#111;line-height:1.6;overflow-x:hidden;max-width:100%;position:relative}
 
 /* ─── SCROLL PROGRESS ─── */
 #sp{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),#6366f1);width:0;z-index:9999;box-shadow:0 0 12px rgba(29,108,240,.7);transition:width .08s linear}
@@ -369,6 +369,9 @@ footer{background:#050505;padding:60px 5% 30px;border-top:1px solid rgba(255,255
   .form-row2{grid-template-columns:1fr}
   .hero-h1{font-size:2rem}
   .proc-step{flex:0 0 45%}
+  .orb1{width:340px;height:340px;right:-90px;top:-80px}
+  .orb2{width:280px;height:280px;left:-80px;bottom:-60px}
+  .orb3{width:180px;height:180px}
 }
 </style>
 </head>
